@@ -1,0 +1,29 @@
+services:
+  # =========================
+  # FASTAPI BACKEND SERVICE
+  # =========================
+
+  - type: web
+    name: salesbackend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MONGO_URI
+        sync: false
+
+  # =========================
+  # FLASK FRONTEND SERVICE
+  # =========================
+  - type: web
+    name: salesfrontend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: BACKEND_URL
+        value: https://sales-agent-hg11.onrender.com/

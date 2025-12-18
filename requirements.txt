@@ -1,0 +1,12 @@
+flask
+requests
+fastapi
+pydantic
+uvicorn[standard]
+pymongo
+langchain
+langchain-openai
+openai
+gunicorn==21.2.0
+
+requests
